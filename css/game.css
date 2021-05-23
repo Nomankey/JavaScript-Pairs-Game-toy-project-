@@ -1,0 +1,158 @@
+/* import/가져오기 */
+@import url('https://fonts.googleapis.com/css2?family=Chela+One&display=swap');
+/* https://fonts.google.com/specimen/Chela+One?preview.text=JAVASCIPRT%20PAIRS%20GAME&preview.text_type=custom */
+
+
+/* ----------------------------------------------- */
+/* variables */
+
+/* color */
+
+/* font */
+
+/* size */
+
+
+
+
+
+
+
+/* ----------------------------------------------- */
+body {
+	background-color: aliceblue;
+	font-family: 'Chela One', cursive;
+	letter-spacing: 1px;
+}
+
+/* header */
+.header {
+	text-align: center;
+	margin-top: 20px;
+}
+h1 {
+	font-size: 40px;
+	padding-bottom: 20px;
+	font-weight: 900;
+	/* https://uigradients.com/#VisionsofGrandeur */
+	background: linear-gradient(to right, #000046, #1cb5e0);
+	-webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+	/* https://css-tricks.com/snippets/css/gradient-text/ */
+}
+span {
+	font-size: 18px;
+	color: #1b2970;
+}
+
+
+
+/* timer section */
+.timer-section {
+	margin: 30px;
+}
+.timer {
+	font-size: 25px;
+	text-align: center; 
+}
+
+
+/* card section */
+.card-section {
+	background: linear-gradient(160deg, #FC466B 10%, #3F5EFB 100%);
+	box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+	border-radius: 10px;
+	margin: 0 auto;
+	width: 500px;
+	padding: 20px;
+	padding-bottom: 30px;
+	height: 400px;
+}
+.card-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.card{
+	/* 아래 .unclicked라는 클래스로 전부 복붙해서 사실상 필요 없는 코드! */
+	/* background-color: red;
+	min-width: 100px;
+	height: 150px;
+	margin: 20px;
+	border-radius: 5px;
+	cursor: pointer; */
+}
+
+/* ----------------------------------------------- */
+/* css class - .clicked, .unclicked */
+.clicked {    
+	/* clicked 되면 카드는 open되는 것! */
+	/* 카드가 flip 되면 각 카드마다 셔플된 이미지를 보여줌. */
+	transform: rotateY(0);
+	cursor: default;
+	pointer-events: none;
+	background-color: rgb(255, 0, 0);
+	width: 100px;
+	height: 150px;
+	/* margin: 20px; */
+	border-radius: 10px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	margin: 30px 10px;
+}
+.unclicked {
+	/* 아래의 코드는 .card의 CSS 코드와 동일! 나중에 @mixin으로 가져올 것...*/
+	background: linear-gradient(to right bottom, #689fe6, #dca8f1);
+	width: 100px;
+	height: 150px;
+	margin: 30px 10px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.matched {
+	/* 이미 짝이 다 맞춰져서 더 이상 건드리지 않아도 되는 상태 */
+	background-color: gray;
+	cursor: default;
+	pointer-events: none;
+}
+
+.unmatched {
+	/* background-image: url();  -> 기본 카드 이미지...? */ 
+	transform: rotateY(0);
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ----------------------------------------------- */
+
+/* 반응형 뷰포트 */
+
+@media all and (max-width: 700px) {
+  .card-wrapper {}
+	.card {}
+}
+@media all and (min-width: 700px) and (max-width: 1080px) {
+	.card-wrapper {}
+	.card {}
+}
+
+@media all and (min-width: 1081px) {
+	.card-wrapper {}
+	.card {}
+}
+
+
+
+

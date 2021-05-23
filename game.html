@@ -5,6 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>JavaScript Pairs Game</title>
+	<link rel="stylesheet" href="./css/reset.css">
 	<link rel="stylesheet" href="./css/game.css">
 	<script src="./js/game.js" defer></script>
 </head>
@@ -27,7 +28,17 @@
 	<!-- card-section -->
 	<section class="card-section">
 		<ul class="card-wrapper">
-			<!-- $cards(ul > li*8)는 JS로 동적 생성할 것! -->
+			<!-- $cards(ul > li*8)는 JS로 동적 생성할 것! 
+				단, 동적으로 생성한 요소에 이벤트를 바인딩 하는 것이 순수 자바스크립트로 하기 어렵다면 
+			그냥 HTML 태그로 요소 생성...!  -->
+			<li class="card unclicked" id="1st-card"></li>
+			<li class="card unclicked" id="2nd-card"></li>
+			<li class="card unclicked" id="3rd-card"></li>
+			<li class="card unclicked"></li>
+			<li class="card unclicked"></li>
+			<li class="card unclicked"></li>
+			<li class="card unclicked"></li>
+			<li class="card unclicked"></li>
 		</ul>
 	</section>
 </body>

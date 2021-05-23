@@ -7,18 +7,60 @@
 
 // DOM 접근 
 const $cardDeck = document.querySelector('.card-div');
-const $card = document.querySelectorAll('.card');
-const $cards = [...$card];
+const $card = document.querySelectorAll('.card');   // NodeList (object) --> length는 8
+const $cards = [...$card]; // --> object. 하지만 $card === $cards -> false
 const $cardsWrapper = document.querySelector('.card-wrapper');
-const $arrayCards = [];
-// const $openedCards = [];
 const $timer = document.querySelector('.timer');
+let $cardClicked = [];
+// $cardClicked배열의 length가 2이상이 되면 안돼고... 만약 두 요소의 Img가 같으면 $cardMatched로 가기...
+let $cardMatched = [];
+
+
 
 // 이벤트 등록 
-document.addEventListener('DOMContentLoaded', e => {
-	// console.log('Loaded!');
-	createCards();
-})
+document.addEventListener('DOMContentLoaded', shuffleCards);
+
+
+
+
+
+
+
+
+// functions
+
+// 카드를 랜덤으로 섞는 함수 ( -> 국룰 !!)
+// Cards are to be shuffled on load or restart
+function shuffleCards () {
+	for (let i = $cards.length - 1; i > 0; i--) {
+		let j = Math.floor(Math.random() * (i + 1));
+		// [cardLength[i], cardLength[j]] = [cardLength[j], cardLength[i]]; // -> 아래 세 줄의 코드와 동일! 
+		let temp = $cards[i];
+		$cards[i] = $cards[j];
+		$cards[j] = temp;
+	}
+	return $cards;
+}
+shuffleCards();    
+// cf. https://www.codegrepper.com/code-examples/javascript/javascript+randomly+shuffle+array
+
+
+
+// 이미지 배열 ... 
+// cards -> background-images 
+let $backgroundImg = ["./images/card_img_1.svg", "./images/card_img_1.svg", "./images/card_img_2.svg", "./images/card_img_2.svg", "./images/card_img_3.svg", "./images/card_img_3.svg", "./images/card_img_4.svg", "./images/card_img_4.svg"]; // 2번씩 !! 카드는 총 8개니까! 
+
+function addImgToCards() {
+	for (let i = 0; i < $cards.length; i++) {
+		$cards[i].style.backgroundImage = `url(${$backgroundImg[i]})`;
+	}
+}
+// addImgToCards();  //-> .clicked로 toggle 할 때 실행할 것! 
+
+
+
+// ---------------  완성된 기능  ---------------  //
+
 
 
 // 클릭을 할 때마다, clickCount++; 
@@ -35,36 +77,6 @@ $card.onclick = () => {
 	}
 
 };
-
-
-
-
-
-
-// functions
-
-// 돔이 로드됐을 떄 카드를 8개를 생성  + 클래스를 추가 
-function createCards() {
-	// $cardsWrapper.innerHTML = '<li class="card"></li>'; 
-	for (let i = 0; i < 8;i++) {
-		$cardsWrapper.appendChild($cardsWrapper.innerHTML = '<li class="card"></li>'); 
-	}
-	// innerHtml --> 코드 두 줄을 한줄로 만들 수 있음!!! 이거 추천!! (.card를 추가할 것!)
-}
-
-
-
-
-// 카드를 랜덤으로 섞는 함수 (국룰 :)! )
-function shuffleCards ($cards) {
-	for (let i = $cards.length - 1; i > 0; i--) {
-		const j = Math.floor(Math.random() * (i + 1));
-		[$cards[i], $cards[j]] = [$cards[j], $cards[i]];
-	}
-	return $cards;
-}
-// cf. https://www.codegrepper.com/code-examples/javascript/javascript+randomly+shuffle+array
-
 
 
 
