@@ -1,3 +1,6 @@
+// console.log('Loaded!');   // -> 확인차! 
+
+
 // 기본 규칙 
 // 1. 처음에 카드가 8개가 주어집니다. 즉, 같은 그림을 가진 카드 쌍이 4개가 있다. 
 // 2. 카드 중 하나를 아무거나 클릭했을 때, 카드가 시작된다. 
@@ -11,17 +14,17 @@ const $card = document.querySelectorAll('.card');   // NodeList (object) --> len
 const $cards = [...$card]; // --> object. 하지만 $card === $cards -> false
 const $cardsWrapper = document.querySelector('.card-wrapper');
 const $timer = document.querySelector('.timer');
-let $cardClicked = [];
+let cardClicked = [];
 // $cardClicked배열의 length가 2이상이 되면 안돼고... 만약 두 요소의 Img가 같으면 $cardMatched로 가기...
-let $cardMatched = [];
-
+let cardMatched = [];
 
 
 // 이벤트 등록 
 document.addEventListener('DOMContentLoaded', shuffleCards);
 
-
-
+// window.onload = () => { }
+// $cards.onclick = () => { }
+// $cards.addEventListener('click', cardClicked);
 
 
 
@@ -42,8 +45,6 @@ function shuffleCards () {
 	return $cards;
 }
 shuffleCards();    
-// cf. https://www.codegrepper.com/code-examples/javascript/javascript+randomly+shuffle+array
-
 
 
 // 이미지 배열 ... 
@@ -55,56 +56,134 @@ function addImgToCards() {
 		$cards[i].style.backgroundImage = `url(${$backgroundImg[i]})`;
 	}
 }
-// addImgToCards();  //-> .clicked로 toggle 할 때 실행할 것! 
+addImgToCards();  //-> .clicked로 toggle 할 때 실행할 것! 
 
 
 
-// ---------------  완성된 기능  ---------------  //
 
 
 
-// 클릭을 할 때마다, clickCount++; 
-// 최초의 클릭이 일어났을 때, 그리고 최초의 클릭만 타이머를 작동시키게끔 정하기  -> 어려움! 
-$card.onclick = () => {
-	let clickCount = 0; 
-	clickCount++;
+// 로직:
+// 다시, 정리하자면... 
+// 카드를 click하면 2개 이하의 카드가 뒤집혀야한다. 
+// 이때 추가할 클래스는 .clicked와 .unclicked 클래스다. 
+// 먼저 기본적으로 들어갈 클래스는 .unclicked 클래스이다. -> ok
+// 카드들이 생성될 때 이미 .unclicked라는 클래스가 동적으로 추가되어 있을 것이다.  -> ok
+// 그리고 해당 카드가 click 되면 ... 카드의 클래스는 .clicked로 바뀔 것이지만 .clicked의 개수가 총 2개를 넘어갈 수는 없다. 
 
-	if (clickCount === 1) {
-		startGame();
-		flipCard();
-	} else {
-		flipCard();
+// 카드를 클릭하면 뒤집힘 + .clicked라고 클래스명 동적으로 변경 
+// $card.onclick () => {
+// 	countClicked();  // 클릭하는 갯수가 동시에 2개 이상일 수 없음. 
+// 	cardClicked();       // 클릭하면 카드가 뒤집히는데, 동시에 2개 이상 뒤집힐 수 없고, 만약 두 카드가 match가 안 된다면 다시 flipCardBack... 
+// }); 
+
+
+// document.querySelectorAll('.card').onclick = function(e) {
+// 	if (e.target && e.target.classList.contains('unclicked')) {
+// 		e.target.toggleClass = 'clicked';
+// 	};
+// }
+
+// document.addEventListener('click', function(e) {
+// 	if (e.target && e.target.classList.contains('unclicked')) {
+// 		e.target.toggleClass = 'clicked';
+// 	}
+// })
+
+// function cardClicked() {
+// 	let clickedCount = 0; 
+
+// 	if ($cards.classList.contains('unclicked') && clickedCount < 3) {
+// 		clickedCount++;
+// 		console.log(clickedCount);  // 확인차! 
+// 		$cards.toggleClass = 'clicked';
+// 	} 
+// }
+
+// function countClicked() {
+// 	let clickedCount = 0; 
+	
+// 	for (let i = 0; $card.length; i++) {
+// 		if ($cards[i].classList.contains('unclicked') === true) {
+// 			// console.log('true');   // 결과: 8번 true를 출력하는 것을 확인! 
+// 			if (clickedCount < 2) {
+// 				clickedCount++;
+// 				$cards.toggleClass = 'clicked';
+// 				console.log(clickedCount);  // 확인차!  -> 1 그리고 2를 출력하고 끝남.
+// 			}
+// 		}
+// 	};
+// }
+
+
+// function addToClikedCard(e) {
+// 	if (cardClicked.length < 2) {
+// 		cardClicked.push(e.target);
+// 	}
+// }
+
+// function cardClicked() {
+// 	showCard();
+// 	addToOpenCards();
+// 	startTimer(); 
+// }
+
+
+$cardsWrapper.onclick = e => {
+	let $cardClickedEl = e.target;
+
+	console.log(cardClicked);
+	
+	if ($cardClickedEl.classList.contains('unclicked') && cardClicked.length < 2) {   // includes 
+		$cardClickedEl.classList.remove('unclicked');
+		$cardClickedEl.classList.add('clicked');
+		cardClicked.push(e.target);
 	}
-
-};
-
-
-
-// 카드를 클릭하면 뒤집힘 
-function flipCard() {
-	// 이때, 카드가 2개 이상 뒤집힐 수 없다 ... --> 어려움! 
-	// $___.classList.add = 'flip';
-	// --> 이거는 SCSS로 클래스 만들어서 JS로 classList.add/remove로 하기! 
+	matchCards();
+	unmatchCards();
+	resetCardClicked();
+	console.log($cardClickedEl);
 }
+
+// setTimeout(resetCardClicked, 1000);
+
+
+
 
 
 
 // 카드 두개가 일치하지 않을 때는 다시 원상태로 복귀, 두개가 일치하면 불투명하게 바꾸기  
 function matchCards() {
-	if () {
-		// 카드 두 개의 클래스가 같을 때, .match 
-
-	// 카드쌍이 맞춰질 때마다 $count++; 할건데, 그 조건은 js 에서 img를 src 주소가 같을때...! 
-	// $count = 0; 
-
-
-	} else {
-		// 카드 두 개의 클래스가 동일 하지 않을 때, .reset 
+	if (cardClicked[0].style.backgroundImage === cardClicked[1].style.backgroundImage) {
+		console.log('아파');
+		cardClicked[0].classList.add('matched');
+		cardClicked[1].classList.add('matched'); 
 	}
-	// --> 이거는 SCSS로 클래스 만들어서 JS로 classList.add/remove로 하기! 
 }
 
+function unmatchCards() {
+	if (cardClicked[0].style.backgroundImage !== cardClicked[1].style.backgroundImage) {
+		cardClicked[0].classList.remove('clicked');
+		cardClicked[0].classList.add('unclicked');
+		cardClicked[0].classList.add('unmatched');
+		cardClicked[1].classList.remove('clicked');
+		cardClicked[1].classList.add('unclicked');
+		cardClicked[1].classList.add('unmatched');
+		
+	}
+}
 
+function resetCardClicked () {
+	if(cardClicked.length == 2) {  // animatiom -> setTimeout
+		cardClicked.length = 0;
+		if (!cardClicked.classList.contains('matched')){
+			cardClicked[0].classList.remove('clicked');
+			cardClicked[0].classList.add('unclicked');
+			cardClicked[1].classList.remove('clicked');
+			cardClicked[1].classList.add('unclicked');
+		}
+	}
+}
 
 
 // timer 구현 
@@ -157,36 +236,37 @@ function timerCycle() {
 }
 
 
-// 타이머 카운팅 종료 
-function stopTimer() {
-	if (timeStatus === false) {
-		timeStatus = true;
-	}
-}
+// // 타이머 카운팅 종료 
+// function stopTimer() {
+// 	if (timeStatus === false) {
+// 		timeStatus = true;
+// 	}
+// }
 
 
 
 
-// 게임 시작 함수 
-function startGame() {
-	countTimer();
-}
+// // 게임 시작 함수 
+// function startGame() {
+// 	countTimer();
+// }
 
 
 
-// 게임 종료하는 함수 --> 모달창을 띄우고, 타이머 상의 시간을 프린트하고, 게임오버라고 적혀있게끔 구현!
-function endGame () {
-	// if  $count === 4 
-	stopTimer();   // 게임 종료 ---> 어려움! 
-}
+// // 게임 종료하는 함수 --> 모달창을 띄우고, 타이머 상의 시간을 프린트하고, 게임오버라고 적혀있게끔 구현!
+// function endGame () {
+// 	// if  $count === 4 
+// 	stopTimer();   // 게임 종료 ---> 어려움! 
+// }
 
 
 
+// // // 게임 재시작 하는 함수 (필요하다면 restart 버튼 구현할 것!)
+// // // 재실행 버튼이 있다면, 버튼 클릭시 -> 함수 restart() 호출...
+// function restart() {
+// 	window.location.reload(true);
 
-
-
-
-
-
-
-
+// 	// 다시 빈 배열로 만들기 
+// 	$cardClicked = [];
+// 	$cardMatched = [];
+// }
