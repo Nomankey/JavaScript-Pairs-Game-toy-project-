@@ -6,21 +6,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>JavaScript Pairs Game</title>
 	<link rel="stylesheet" href="./css/reset.css">
-	<link rel="stylesheet" href="./css/game.css">
-	<script src="./js/game.js" defer></script>
+	<link rel="stylesheet" href="./css/modal.css">
+	<script src="./js/modal.js" defer></script>
 </head>
 
 <body>
 	<!-- header -->
 	<header class="header">
 		<h1>JAVASCIPRT PAIRS GAME</h1>
-		<span>CLICK ANY CARD TO BEGIN</span>
+		<span class="header-span">CLICK ANY CARD TO BEGIN</span>
 	</header>
 
 	<!-- timer-section -->
 	<section class="timer-section">
 		<!-- timer -->
-		<div class="timer">
+		<div class="timer run">
 			00:00:00
 		</div>
 	</section>
@@ -38,5 +38,14 @@
 			<li class="card unclicked"></li>
 		</ul>
 	</section>
+
+	<!-- modal popup -->
+	<div class="modal-wrapper">
+		<div class="modal">
+			<h2>GAME OVER!</h2>
+			<span class="time-spent">TIME SPENT: </span>
+			<span class="time-record"></span>
+		</div>
+	</div>
 </body>
 </html>
