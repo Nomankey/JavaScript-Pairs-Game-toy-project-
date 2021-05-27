@@ -21,7 +21,7 @@ const $timer = document.querySelector('.timer');
 let cardClicked = [];
 let cardMatched = [];
 
-let matchedCards = []; 
+// let matchedCards = []; 
 
 
 // 이벤트 등록 
@@ -195,7 +195,7 @@ function startTimerCycle() {
 			hour = '0' + hour;
 		}
 
-		timeRecord = `${hour} : ${min} : ${sec}`;
+		let timeRecord = `${hour} : ${min} : ${sec}`;
 		// $timer.textContent = `${hour} : ${min} : ${sec}`;
 		$timer.textContent = timeRecord;
 		console.log(timeRecord);

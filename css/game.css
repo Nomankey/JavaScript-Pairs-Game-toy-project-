@@ -50,10 +50,62 @@ span {
 /* timer section */
 .timer-section {
 	margin: 30px;
+	margin-bottom: 20px;
 }
 .timer {
 	font-size: 25px;
 	text-align: center; 
+}
+.btn-wrapper {
+	margin-top: 20px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.start-btn {
+	margin-left: 100px;
+
+
+	/* btn styling */
+	padding: 5px 10px;
+	border-radius: 3px;
+	border: none;
+	background-color: #94b7e4;
+	color: whitesmoke;
+	width: 32px;
+	height: 25px;
+	box-shadow: 2px 5px 5px 0 rgba(46, 61, 73, 0.5);
+}
+.start-btn:hover {
+	cursor: pointer;
+}
+.start-btn:active {
+	color: #94b7e4;
+	background-color: whitesmoke;
+	width: 33px;
+	height: 26px;
+}
+.restart-btn {
+	margin-right: 100px;
+
+	/* btn styling */
+	padding: 5px 10px;
+	border-radius: 3px;
+	border: none;
+	background-color: #94b7e4;
+	color: whitesmoke;
+	width: 32px;
+	height: 25px;
+	box-shadow: 2px 5px 5px 0 rgba(46, 61, 73, 0.5);
+}
+.restart-btn:hover {
+	cursor: pointer;
+}
+.restart-btn:active {
+	color: #94b7e4;
+	background-color: whitesmoke;
+	width: 33px;
+	height: 26px;
 }
 
 
@@ -157,3 +209,86 @@ span {
 
 
 
+
+
+
+
+
+/* ----------------------------------------------- */
+/* Modal popup css class*/
+.displayNone {
+	display: none;
+}
+.displayModal {
+	display: block;;
+}
+.colorTransparent {
+	color: transparent;
+}
+
+
+/* Modal popup */
+.modal-wrapper {
+	/* position: relative; */
+	margin: 20px auto;
+	background-color: #689fe6;
+	width: 400px;
+	height: 300px;
+	border-radius: 10px;
+}
+.modal h2 {
+	text-align: center;
+	padding-top: 75px;
+
+	/* h1과 스타일 동일. 단, font-size만 다름! */
+	font-size: 30px;
+	padding-bottom: 20px;
+	font-weight: 900;
+	/* https://uigradients.com/#VisionsofGrandeur */
+	background: linear-gradient(to right, #000046, #1cb5e0);
+	-webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+	/* https://css-tricks.com/snippets/css/gradient-text/ */
+
+
+	
+	/* animation */
+	animation-name: spin;
+  animation-duration: 1000ms;
+  /* animation-iteration-count: infinite; */
+  animation-timing-function: linear; 
+}
+.time-spent, .time-record {
+	display: block;
+	text-align: center;
+	margin-top: 30px;
+
+
+	/* animation */
+	animation-name: spin;
+  animation-duration: 1400ms;
+  /* animation-iteration-count: infinite; */
+  animation-timing-function: linear; 
+}
+.time-record {
+	margin-top: 20px;
+
+	/* animation */
+	animation-name: spin;
+  animation-duration: 1500ms;
+  /* animation-iteration-count: infinite; */
+  animation-timing-function: linear; 
+}
+
+
+
+/* ----------------------------------------------- */
+/* animation */
+@keyframes spin {
+	0% {
+			transform:rotateY(0deg);
+	}
+	70% {
+			transform:rotateY(360deg);
+	}
+}

@@ -9,7 +9,16 @@
 
 
 // DOM 접근 
-const $cardDeck = document.querySelector('.card-div');
+const $header = document.querySelector('.header');
+const $headerSpan = document.querySelector('.header-span');
+const $timerSection = document.querySelector('.timer-section');
+
+const $btnWrapper = document.querySelector('.btn-wrapper');
+const $startBtn =  document.querySelector('.start-btn');
+const $restartBtn = document.querySelector('.restart-btn');
+
+
+const $cardDeck = document.querySelector('.card-section');
 const $card = document.querySelectorAll('.card');   // NodeList (object) --> length는 8
 const $cards = [...$card]; // --> object. 하지만 $card === $cards -> false
 const $cardsWrapper = document.querySelector('.card-wrapper');
@@ -17,8 +26,13 @@ const $timer = document.querySelector('.timer');
 let cardClicked = [];
 let cardMatched = [];
 
-let matchedCards = []; 
+let checkingCards = [];
 
+// for (let i = 0; i < $cards.length ;i++) {
+// 	if (!$cards[i].className.contains('active')) {
+// 		$cards[i].style.pointerEvents = 'none';
+// 	}
+// }
 
 // 이벤트 등록 
 document.addEventListener('DOMContentLoaded', shuffleCards);
@@ -27,13 +41,43 @@ document.addEventListener('DOMContentLoaded', shuffleCards);
 // $cards.onclick = () => { }
 // $cards.addEventListener('click', cardClicked);
 
+$btnWrapper.onclick = e => {
+	$
+	
+	$cardsWrapper.style.pointerEvents = 'none';
+	$startBtn.classList.toggle('active', $startBtn === e.target);
+}
 
+
+
+
+
+
+let n; 
 
 $cardsWrapper.onclick = e => {
 	let $cardClickedEl = e.target;
 
-	console.log(cardClicked);
-	
+	// if (checkingCards.length > 0 && cardMatched.length < 8) {
+	// 	setInterval(startTimerCycle, 1000);
+	// } else {
+	// 	alert('game is over! apppaaa!!');
+	// }
+
+
+	if (checkingCards.length != 0 && cardMatched.length != 8) {
+		n = setInterval(startTimerCycle, 1000);
+		// setInterval(startTimerCycle, 1000);
+		// return n;
+	} 
+	// else {
+	// 	clearInterval(setInterval(startTimerCycle, 1000));
+	// }
+
+	// startTimer();
+
+	checkingCards.push($cardClickedEl);
+
 	if ($cardClickedEl.classList.contains('unclicked') && cardClicked.length < 2) {   // includes 
 		$cardClickedEl.classList.remove('unclicked');
 		$cardClickedEl.classList.add('clicked');
@@ -42,7 +86,6 @@ $cardsWrapper.onclick = e => {
 	matchCards();
 	unmatchCards();
 	resetCardClicked();
-	console.log($cardClickedEl);
 }
 
 
@@ -91,7 +134,9 @@ function matchCards() {
 	if (cardClicked[0].style.backgroundImage === cardClicked[1].style.backgroundImage) {
 		console.log('아파');
 		cardClicked[0].classList.add('matched');
-		cardClicked[1].classList.add('matched'); 
+		cardClicked[1].classList.add('matched');
+		cardMatched.push(cardClicked[0]);
+		cardMatched.push(cardClicked[1]);
 	}
 }
 
@@ -102,8 +147,7 @@ function unmatchCards() {
 		cardClicked[0].classList.add('unmatched');
 		cardClicked[1].classList.remove('clicked');
 		cardClicked[1].classList.add('unclicked');
-		cardClicked[1].classList.add('unmatched');
-		
+		cardClicked[1].classList.add('unmatched');	
 	}
 }
 
@@ -123,81 +167,6 @@ function resetCardClicked () {
 
 
 
-// // timer 구현 
-// // 타이머 카운팅 시작 
-// let hour = 0;
-// let min = 0;
-// let sec = 0;
-// let timeStatus = true; 
-
-// function startTimer() {
-// 	if (timeStatus === true) {
-// 		timeStatus = false; 
-// 		timerCycle();
-// 	}
-// }
-
-// // 타이머 돌아가는 싸이클 
-// function timerCycle() {
-// 	if (timeStatus === false) {
-// 		sec = parseInt(sec);
-// 		min = parseInt(min);
-// 		hour = parseInt(hour);
-
-// 		sec += 1;
-
-// 		if (sec === 60) {
-// 			min += 1;
-// 			sec = 0;
-// 		}
-// 		if (min === 60) {
-// 			hour += 1;
-// 			min = 0;
-// 			sec = 0;
-// 		}
-
-
-// 		if (sec < 10) {
-// 			sec = '0' + sec;
-// 		}
-// 		if (min < 10) {
-// 			min = '0' + min;
-// 		}
-// 		if (hour < 10) {
-// 			hour = '0' + hour;
-// 		}
-// 		$timer.innerHTML = `${hour} : ${min} : ${sec}`;
-
-// 		setTimeout("timerCycle()", 1000);
-// 	}
-// }
-
-
-// // 타이머 카운팅 종료 
-// function stopTimer() {
-// 	if (timeStatus === false) {
-// 		timeStatus = true;
-// 	}
-// }
-
-
-
-
-// // 게임 시작 함수 
-// function startGame() {
-// 	countTimer();   // 클릭시 게임 시작!
-// }
-
-
-
-// // 게임 종료하는 함수 --> 모달창을 띄우고, 타이머 상의 시간을 프린트하고, 게임오버라고 적혀있게끔 구현!
-// function endGame () {
-// 	// if  $count === 4 
-// 	stopTimer();   // 게임 종료 --> matchedCards가 4쌍이 되었을 떄, .length = 8 일 때...
-// }
-
-
-
 // // // 게임 재시작 하는 함수 (필요하다면 restart 버튼 구현할 것!)
 // // // 재실행 버튼이 있다면, 버튼 클릭시 -> 함수 restart() 호출...
 // function restart() {
@@ -206,10 +175,6 @@ function resetCardClicked () {
 
 
 
-// HW: 
-// 타이머가 멈추고 && 게임이 종료되는 함수가 호출 될 때, --> function popUpModal() {}
-// 모달창 css 만들고... 
-// sass 로 바꾸는 거는 금요일 ...
 
 
 // timer 구현 
@@ -217,6 +182,20 @@ function resetCardClicked () {
 let hour = 0;
 let min = 0;
 let sec = 0;
+
+// let timeRecord = `${hour} : ${min} : ${sec}`;  // global variable
+
+
+
+function startTimer() {
+	if (checkingCards.length != 0 && cardMatched.length != 8) {
+		// let n = setInterval(startTimerCycle, 1000);
+		setInterval(startTimerCycle, 1000);
+		// return n;
+	} else {
+		clearInterval(setInterval(startTimerCycle, 1000));
+	}
+}
 
 
 // 게임 시작 함수 
@@ -249,22 +228,23 @@ function startTimerCycle() {
 			hour = '0' + hour;
 		}
 
-		$timer.textContent = `${hour} : ${min} : ${sec}`;
+		// $timer.textContent = `${hour} : ${min} : ${sec}`;
 
-		// setInterval("startTimerCycle", 1000);
+		if (cardMatched.length == 8) {
+			clearInterval(n);
+		}
+
+		let timeRecord = `${hour} : ${min} : ${sec}`;
+		$timer.textContent = timeRecord;
+		console.log(timeRecord);
 }
 
 
 
 
-// 타이머 카운팅 종료 함수
-function stopTimerCycle() {
-	if (matchedCards.length === 8) {
-		// 이 함수 실행될 때, 모달창 뜨게...
-		alert('모달창: 게임이 종료되었습니다!');
-	}
-}
-stopTimerCycle();   
+
+
+
 
 
 
@@ -277,3 +257,31 @@ stopTimerCycle();
 // 토요일: 
 // sass 문법으로 css 파일 바꾸기 
 // readme.md 작성 + gif 도 첨부 
+
+
+
+// // modal popup
+// // 게임이 종료되면 (stopTimerCycle();)... body의 배경색이 투명하고 흐릿한 회색이 될 것... 
+// document.body.style.backgroundColor = 'lightgray';
+
+
+// $headerSpan.style.color = 'transparent';
+// $timerSection.style.display= 'none';  
+// $cardDeck.style.display = 'none';
+
+// // $headerSpan.classList.add = 'colorTransparent';
+// // $timerSection.classList.add= 'displayNone';  
+// // $cardDeck.classList.add = 'displayNone';
+
+
+// const $modalWrapper = document.querySelector('.modal-wrapper');
+// const $timeSpent = document.querySelector('.time-spent');
+// const $timeRecord = document.querySelector('.time-record');
+
+// $modalWrapper.classList.add('displayModal');
+// $timeSpent.appendChild.textContent = timeRecord;   // 확인 필요! 
+// $timeRecord.innerText = '00:10:03';   // 확인 필요! 
+// $timeRecord.textContent = '00:10:03';   // 확인 필요! 
+
+
+

@@ -7,6 +7,7 @@
 	<title>JavaScript Pairs Game</title>
 	<link rel="stylesheet" href="./css/reset.css">
 	<link rel="stylesheet" href="./css/game.css">
+	<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 	<script src="./js/game.js" defer></script>
 </head>
 
@@ -14,7 +15,7 @@
 	<!-- header -->
 	<header class="header">
 		<h1>JAVASCIPRT PAIRS GAME</h1>
-		<span>CLICK ANY CARD TO BEGIN</span>
+		<span class="header-span">CLICK ANY CARD TO BEGIN</span>
 	</header>
 
 	<!-- timer-section -->
@@ -22,6 +23,10 @@
 		<!-- timer -->
 		<div class="timer">
 			00:00:00
+		</div>
+		<div class="btn-wrapper">
+			<button class="start-btn" type="button"><i class="fas fa-play"></i></button>
+			<button class="restart-btn" type="button"><i class="fas fa-redo-alt"></i></button>
 		</div>
 	</section>
 
@@ -38,5 +43,14 @@
 			<li class="card unclicked"></li>
 		</ul>
 	</section>
+
+	<!-- modal popup -->
+	<!-- <div class="modal-wrapper">
+		<div class="modal">
+			<h2>GAME OVER!</h2>
+			<span class="time-spent">TIME SPENT: </span>
+			<span class="time-record"></span>
+		</div>
+	</div> -->
 </body>
 </html>
