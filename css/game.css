@@ -229,12 +229,17 @@ span {
 
 /* Modal popup */
 .modal-wrapper {
+	position: absolute;
+	left: calc(50% - 200px);
+	top: calc(50% - 150px);
 	/* position: relative; */
 	margin: 20px auto;
 	background-color: #689fe6;
 	width: 400px;
 	height: 300px;
 	border-radius: 10px;
+	display: none;
+	z-index: 10;
 }
 .modal h2 {
 	text-align: center;

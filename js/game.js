@@ -17,6 +17,10 @@ const $btnWrapper = document.querySelector('.btn-wrapper');
 const $startBtn =  document.querySelector('.start-btn');
 const $restartBtn = document.querySelector('.restart-btn');
 
+const $modalWrapper = document.querySelector('.modal-wrapper');
+const $modal = document.querySelector('.modal')
+const $timeSpent = document.querySelector('.time-spent');
+
 
 const $cardDeck = document.querySelector('.card-section');
 const $card = document.querySelectorAll('.card');   // NodeList (object) --> length는 8
@@ -28,21 +32,10 @@ let cardMatched = [];
 
 let checkingCards = [];
 
-// for (let i = 0; i < $cards.length ;i++) {
-// 	if (!$cards[i].className.contains('active')) {
-// 		$cards[i].style.pointerEvents = 'none';
-// 	}
-// }
-
 // 이벤트 등록 
 document.addEventListener('DOMContentLoaded', shuffleCards);
 
-// window.onload = () => { }
-// $cards.onclick = () => { }
-// $cards.addEventListener('click', cardClicked);
-
 $btnWrapper.onclick = e => {
-	$
 	
 	$cardsWrapper.style.pointerEvents = 'none';
 	$startBtn.classList.toggle('active', $startBtn === e.target);
@@ -53,31 +46,33 @@ $btnWrapper.onclick = e => {
 
 
 
-let n; 
+let runner; 
 
 $cardsWrapper.onclick = e => {
 	let $cardClickedEl = e.target;
-
+	
 	// if (checkingCards.length > 0 && cardMatched.length < 8) {
-	// 	setInterval(startTimerCycle, 1000);
-	// } else {
-	// 	alert('game is over! apppaaa!!');
-	// }
-
-
-	if (checkingCards.length != 0 && cardMatched.length != 8) {
-		n = setInterval(startTimerCycle, 1000);
-		// setInterval(startTimerCycle, 1000);
-		// return n;
-	} 
-	// else {
-	// 	clearInterval(setInterval(startTimerCycle, 1000));
-	// }
-
-	// startTimer();
-
+		// 	setInterval(startTimerCycle, 1000);
+		// } else {
+			// 	alert('game is over! apppaaa!!');
+			// }
+	clearInterval(runner);
+	runner = setInterval(startTimerCycle,1000);
+			
+			
+			// if (checkingCards.length != 0 && cardMatched.length != 8) {
+				// 	n = setInterval(startTimerCycle, 1000);
+				// 	// setInterval(startTimerCycle, 1000);
+				// 	// return n;
+				// } 
+				// // else {
+					// // 	clearInterval(setInterval(startTimerCycle, 1000));
+					// // }
+					
+					// // startTimer();
+					
 	checkingCards.push($cardClickedEl);
-
+					
 	if ($cardClickedEl.classList.contains('unclicked') && cardClicked.length < 2) {   // includes 
 		$cardClickedEl.classList.remove('unclicked');
 		$cardClickedEl.classList.add('clicked');
@@ -86,21 +81,23 @@ $cardsWrapper.onclick = e => {
 	matchCards();
 	unmatchCards();
 	resetCardClicked();
-}
+	console.log(cardMatched.length);
+};
+				
+				
+				
+				
+				
 
-
-
-
-
-
-
-
-
-
-// functions
-
-// 카드를 랜덤으로 섞는 함수 ( -> 국룰 !!)
-// Cards are to be shuffled on load or restart
+				
+				
+				
+				
+				
+				// functions
+				
+				// 카드를 랜덤으로 섞는 함수 ( -> 국룰 !!)
+				// Cards are to be shuffled on load or restart
 function shuffleCards () {
 	for (let i = $cards.length - 1; i > 0; i--) {
 		let j = Math.floor(Math.random() * (i + 1));
@@ -154,7 +151,7 @@ function unmatchCards() {
 function resetCardClicked () {
 	if(cardClicked.length == 2) {  // animatiom -> setTimeout
 		cardClicked.length = 0;
-		if (!cardClicked.classList.contains('matched')){
+		if (![...cardClicked].classList.contains('matched')){
 			cardClicked[0].classList.remove('clicked');
 			cardClicked[0].classList.add('unclicked');
 			cardClicked[1].classList.remove('clicked');
@@ -187,15 +184,15 @@ let sec = 0;
 
 
 
-function startTimer() {
-	if (checkingCards.length != 0 && cardMatched.length != 8) {
-		// let n = setInterval(startTimerCycle, 1000);
-		setInterval(startTimerCycle, 1000);
-		// return n;
-	} else {
-		clearInterval(setInterval(startTimerCycle, 1000));
-	}
-}
+// function startTimer() {
+// 	if (checkingCards.length != 0 && cardMatched.length != 8) {
+// 		// let n = setInterval(startTimerCycle, 1000);
+// 		setInterval(startTimerCycle, 1000);
+// 		// return n;
+// 	} else {
+// 		clearInterval(setInterval(startTimerCycle, 1000));
+// 	}
+// }
 
 
 // 게임 시작 함수 
@@ -228,18 +225,23 @@ function startTimerCycle() {
 			hour = '0' + hour;
 		}
 
+		let timeRecord = `${hour} : ${min} : ${sec}`;
+		$timer.textContent = timeRecord;
 		// $timer.textContent = `${hour} : ${min} : ${sec}`;
 
 		if (cardMatched.length == 8) {
-			clearInterval(n);
+			clearInterval(runner);
+			popUp(timeRecord);
 		}
 
-		let timeRecord = `${hour} : ${min} : ${sec}`;
-		$timer.textContent = timeRecord;
-		console.log(timeRecord);
 }
 
 
+function popUp(timeRecord) {
+	let active = false;
+	$modalWrapper.style.display = active? 'none':'block';
+	$timeSpent.textContent = `TIME SPENT: ${timeRecord}`;
+}
 
 
 
