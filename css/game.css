@@ -1,21 +1,5 @@
 /* import/가져오기 */
 @import url('https://fonts.googleapis.com/css2?family=Chela+One&display=swap');
-/* https://fonts.google.com/specimen/Chela+One?preview.text=JAVASCIPRT%20PAIRS%20GAME&preview.text_type=custom */
-
-
-/* ----------------------------------------------- */
-/* variables */
-
-/* color */
-
-/* font */
-
-/* size */
-
-
-
-
-
 
 
 /* ----------------------------------------------- */
@@ -25,6 +9,8 @@ body {
 	letter-spacing: 1px;
 }
 
+
+/* ----------------------------------------------- */
 /* header */
 .header {
 	text-align: center;
@@ -34,11 +20,9 @@ h1 {
 	font-size: 40px;
 	padding-bottom: 20px;
 	font-weight: 900;
-	/* https://uigradients.com/#VisionsofGrandeur */
 	background: linear-gradient(to right, #000046, #1cb5e0);
 	-webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-	/* https://css-tricks.com/snippets/css/gradient-text/ */
 }
 span {
 	font-size: 18px;
@@ -47,6 +31,7 @@ span {
 
 
 
+/* ----------------------------------------------- */
 /* timer section */
 .timer-section {
 	margin: 30px;
@@ -56,39 +41,109 @@ span {
 	font-size: 25px;
 	text-align: center; 
 }
-.btn-wrapper {
-	margin-top: 20px;
+
+
+
+
+/* ----------------------------------------------- */
+/* card section */
+.card-section {
+	background: linear-gradient(160deg, #FC466B 10%, #3F5EFB 100%);
+	box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+	border-radius: 10px;
+	margin: 0 auto;
+	width: 500px;
+	padding: 20px;
+	padding-bottom: 30px;
+	height: 400px;
+}
+.card-wrapper {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-between;
 }
 
-.start-btn {
-	margin-left: 100px;
 
 
-	/* btn styling */
-	padding: 5px 10px;
-	border-radius: 3px;
-	border: none;
-	background-color: #94b7e4;
-	color: whitesmoke;
-	width: 32px;
-	height: 25px;
-	box-shadow: 2px 5px 5px 0 rgba(46, 61, 73, 0.5);
+
+/* ----------------------------------------------- */
+/* css class - .clicked, .unclicked, .matched, .unmatched */
+.clicked {    
+	cursor: default;
+	pointer-events: none;
+	border: 3px dashed #1cb5e0;
+	box-sizing: border-box;
+	width: 100px;
+	height: 150px;
+	border-radius: 10px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	margin: 30px 10px;
 }
-.start-btn:hover {
+.unclicked {
+	background: linear-gradient(to right bottom, #689fe6, #dca8f1) !important;
+	width: 100px;
+	height: 150px;
+	margin: 30px 10px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	border-radius: 10px;
 	cursor: pointer;
 }
-.start-btn:active {
-	color: #94b7e4;
-	background-color: whitesmoke;
-	width: 33px;
-	height: 26px;
-}
-.restart-btn {
-	margin-right: 100px;
 
-	/* btn styling */
+.matched {
+	background-color: gray;
+	cursor: default;
+	pointer-events: none;
+	border: none;
+}
+
+.unmatched {
+	width: 100px;
+	height: 150px;
+	margin: 30px 10px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+
+
+
+/* ----------------------------------------------- */
+/* Modal popup css class*/
+.displayNone {
+	display: none;
+}
+.displayModal {
+	display: block;
+}
+.colorTransparent {
+	color: transparent;
+}
+
+
+/* Modal popup */
+.modal-wrapper {
+	position: absolute;
+	left: calc(50% - 200px);
+	top: calc(50% - 150px);
+	margin: 20px auto;
+	background-color: #689fe6;
+	width: 400px;
+	height: 300px;
+	border-radius: 10px;
+	z-index: 10;
+}
+.modal {
+	position: relative;
+}
+
+.restart-btn {
+	position: absolute;
+	right: 15px;
+	top: 15px;
 	padding: 5px 10px;
 	border-radius: 3px;
 	border: none;
@@ -106,185 +161,40 @@ span {
 	background-color: whitesmoke;
 	width: 33px;
 	height: 26px;
-}
+} 
 
-
-/* card section */
-.card-section {
-	background: linear-gradient(160deg, #FC466B 10%, #3F5EFB 100%);
-	box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-	border-radius: 10px;
-	margin: 0 auto;
-	width: 500px;
-	padding: 20px;
-	padding-bottom: 30px;
-	height: 400px;
-}
-.card-wrapper {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-}
-.card{
-	/* 아래 .unclicked라는 클래스로 전부 복붙해서 사실상 필요 없는 코드! */
-	/* background-color: red;
-	min-width: 100px;
-	height: 150px;
-	margin: 20px;
-	border-radius: 5px;
-	cursor: pointer; */
-}
-
-/* ----------------------------------------------- */
-/* css class - .clicked, .unclicked */
-.clicked {    
-	/* clicked 되면 카드는 open되는 것! */
-	/* 카드가 flip 되면 각 카드마다 셔플된 이미지를 보여줌. */
-	transform: rotateY(0);
-	cursor: default;
-	pointer-events: none;
-	border: 3px dashed #1cb5e0;
-	box-sizing: border-box;
-	width: 100px;
-	height: 150px;
-	border-radius: 10px;
-	background-repeat: no-repeat;
-	background-size: contain;
-	margin: 30px 10px;
-}
-.unclicked {
-	/* 아래의 코드는 .card의 CSS 코드와 동일! 나중에 @mixin으로 가져올 것...*/
-	background: linear-gradient(to right bottom, #689fe6, #dca8f1);
-	width: 100px;
-	height: 150px;
-	margin: 30px 10px;
-	background-repeat: no-repeat;
-	background-size: contain;
-	border-radius: 10px;
-	cursor: pointer;
-}
-
-.matched {
-	/* 이미 짝이 다 맞춰져서 더 이상 건드리지 않아도 되는 상태 */
-	background-color: gray;
-	cursor: default;
-	pointer-events: none;
-	border: none;
-}
-
-.unmatched {
-	/* background-image: url();  -> 기본 카드 이미지...? */ 
-	transform: rotateY(0);
-	
-}
-
-
-
-
-
-
-
-
-
-
-
-/* ----------------------------------------------- */
-
-/* 반응형 뷰포트 */
-
-@media all and (max-width: 700px) {
-  .card-wrapper {}
-	.card {}
-}
-@media all and (min-width: 700px) and (max-width: 1080px) {
-	.card-wrapper {}
-	.card {}
-}
-
-@media all and (min-width: 1081px) {
-	.card-wrapper {}
-	.card {}
-}
-
-
-
-
-
-
-
-
-
-/* ----------------------------------------------- */
-/* Modal popup css class*/
-.displayNone {
-	display: none;
-}
-.displayModal {
-	display: block;;
-}
-.colorTransparent {
-	color: transparent;
-}
-
-
-/* Modal popup */
-.modal-wrapper {
-	position: absolute;
-	left: calc(50% - 200px);
-	top: calc(50% - 150px);
-	/* position: relative; */
-	margin: 20px auto;
-	background-color: #689fe6;
-	width: 400px;
-	height: 300px;
-	border-radius: 10px;
-	display: none;
-	z-index: 10;
-}
 .modal h2 {
 	text-align: center;
 	padding-top: 75px;
-
-	/* h1과 스타일 동일. 단, font-size만 다름! */
 	font-size: 30px;
 	padding-bottom: 20px;
 	font-weight: 900;
-	/* https://uigradients.com/#VisionsofGrandeur */
 	background: linear-gradient(to right, #000046, #1cb5e0);
 	-webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-	/* https://css-tricks.com/snippets/css/gradient-text/ */
-
-
-	
 	/* animation */
 	animation-name: spin;
   animation-duration: 1000ms;
-  /* animation-iteration-count: infinite; */
   animation-timing-function: linear; 
 }
-.time-spent, .time-record {
+.time-spent, .time-record-span {
 	display: block;
 	text-align: center;
 	margin-top: 30px;
-
-
 	/* animation */
 	animation-name: spin;
   animation-duration: 1400ms;
-  /* animation-iteration-count: infinite; */
   animation-timing-function: linear; 
 }
-.time-record {
+.time-record-span {
+	font-weight: 600;
+	font-size: 1.3rem;
 	margin-top: 20px;
-
 	/* animation */
 	animation-name: spin;
   animation-duration: 1500ms;
-  /* animation-iteration-count: infinite; */
   animation-timing-function: linear; 
 }
-
 
 
 /* ----------------------------------------------- */

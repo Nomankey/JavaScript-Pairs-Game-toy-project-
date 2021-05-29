@@ -17,10 +17,8 @@ date: 2021-05-16-Sunday
 - 팀감자탕   
 
 📌 개발 인원: 프론트엔드 4명
-- [박** Github](https://github.com/ekfka4863/)
-- [최** Github](https://github.com/ebchoi/)
-- [김** Github](https://github.com/YuryangKim/)
 - [박** Github](https://github.com/Nomankey/)
+- [박** Github](https://github.com/ekfka4863/)
 
 <br>
 <br>
@@ -45,7 +43,11 @@ date: 2021-05-16-Sunday
 <br>
 <br>
 
-## 💡 Cloning 데모 영상
+## 💡 Game 데모 
+![모달창 구현](https://user-images.githubusercontent.com/70094833/120061903-5a744d00-c09a-11eb-8ca5-4c52778cc8af.gif)
+![카드셔플 기능 구현](https://user-images.githubusercontent.com/70094833/120061907-5c3e1080-c09a-11eb-8723-746e7979e405.gif)
+![카드 타이머 기능 구현](https://user-images.githubusercontent.com/70094833/120061884-3a448e00-c09a-11eb-895d-4afef5514cec.gif)
+![메모리 카드 게임 최종본](https://user-images.githubusercontent.com/70094833/120061908-5d6f3d80-c09a-11eb-8a58-25d274be631d.gif)
 
 <br>
 
@@ -94,7 +96,8 @@ date: 2021-05-16-Sunday
 <br>
 
 ### 잘한점👏
-- 
+- 기획 단계 계획을 비디오로 시각화하여 프로젝트의 목표를 구체화함    
+[링크](https://www.youtube.com/watch?v=QE6o_ZqyU9I) 참고!
 -
 -
 
@@ -106,3 +109,19 @@ date: 2021-05-16-Sunday
 -
 
 <br>
+
+
+---
+<details>
+<summary>CLICK ME!</summary>
+
+- cf. 
+	- https://androphil.tistory.com/638?category=610258
+	- https://www.youtube.com/watch?v=ZniVgo8U7ek 
+	- https://imgflip.com/gif/5ambb3
+	-
+
+</details>
+
+
+---
