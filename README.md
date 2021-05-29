@@ -58,7 +58,7 @@ date: 2021-05-29-Saturday
 
 <br>
 
-👉 [Link to the project](https://ekfka4863.github.io/JavaScriptPairsGameToyProject/)
+👉 [Link to the project](https://jsmemorycardgame.netlify.app)
 <br>
 
 
