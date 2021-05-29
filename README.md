@@ -128,9 +128,7 @@ date: 2021-05-29-Saturday
 	- https://androphil.tistory.com/638?category=610258
 	- https://www.youtube.com/watch?v=ZniVgo8U7ek 
 	- https://imgflip.com/gif/5ambb3
-	-
 
 </details>
-
 
 ---
