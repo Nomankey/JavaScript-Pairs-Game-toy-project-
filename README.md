@@ -42,7 +42,7 @@ date: 2021-05-29-Saturday
 ## 💡 Game 데모 
 
 <div>
-	<img src="https://user-images.githubusercontent.com/70094833/120061907-5c3e1080-c09a-11eb-8723-746e7979e405.gif" style="width: 400px; height: 300px;" alt="카드 셔플 기능 구현" />
+	<img src="https://user-images.githubusercontent.com/70094833/120063299-6ca5b980-c0a1-11eb-8bed-a2ea3d867f3f.gif" style="width: 400px; height: 300px;" alt="카드 셔플 기능 구현" />
 </div>
 
 <div>
