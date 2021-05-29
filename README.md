@@ -13,8 +13,8 @@ date: 2021-05-29-Saturday
 - 팀감자탕   
 
 📌 개발 인원: 프론트엔드 2명
-- [박** Github](https://github.com/Nomankey/)
-- [박** Github](https://github.com/ekfka4863/)
+- [박** Github](https://github.com/Nomankey/JavaScript-Pairs-Game-toy-project-.git)
+- [박** Github](https://github.com/ekfka4863/JavaScriptPairsGameToyProject.git)
 
 <br>
 <br>
